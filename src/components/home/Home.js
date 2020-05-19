@@ -1,12 +1,10 @@
-import React from 'react';
-import { Heading } from '../heading/Heading';
+import React, {Fragment} from 'react';
 import { Cards } from '../cards/Cards';
 
 export const Home = () => {
   return (
-    <div>
-      <Heading />
+    <Fragment>
       <Cards />
-    </div>
+    </Fragment>  
   )
 }

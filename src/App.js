@@ -1,17 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from './components/home/Home';
-import { Details } from './components/details/Details'
-
+import { Detail } from './components/details/Detail';
+import { Nav } from './components/navigation/Nav';
 
 import "./App.css";
 
 const App = () => ( 
   <div className="App">
     <Router>
-      <Switch>
+      <Nav />
+      <Switch>        
         <Route exact path={"/"} component={ Home }/>
-        <Route exact path={"/details/:id/1"} component={ Details }/>
+        <Route exact path={"/detail"} component={ Detail }/>
       </Switch>
     </Router>
         
@@ -19,3 +20,5 @@ const App = () => (
 );
 
 export default App;
+
+// <Route exact path={"detail/:id"} component={ Detail }/>

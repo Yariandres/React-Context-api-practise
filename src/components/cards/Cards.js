@@ -1,7 +1,6 @@
 import React from 'react';
-import { AddCard } from '../addCard/AddCard';
 import { Link } from 'react-router-dom';
-
+import { AddCard } from '../addCard/AddCard';
 import { 
   Card, 
   Row, 
@@ -31,33 +30,28 @@ export const Cards = () => {
 
   return (
     <Container>
-      <section className="cards-list mt-5">
-        <h4 className="mt-5 dashboard-text font-weight-light">Dashboard</h4>
+      <section className="cards-list">        
         <Row>     
           <Col sm="6" md="4">
-            
-              <Card body>
-                <Link to="/details/:id/1" className="card-link">         
+            <Link to={"/detail"} className="card-link">        
+              <Card body>        
                   <CardTitle className="text-center card-text">London</CardTitle>
                   <Row>
                     <Col className="text-center">              
                       <img className="mt-4 " src={ Logo } alt=""/>
                     </Col>
-
                     <Col>                
-                      <p className="card-text text-day">
-                          { dayBuilder(new Date()) } 
+                      <p className="card-text text-day">{ dayBuilder(new Date())} 
                         <small> 10/10/2020</small>
                       </p>
-
                       <hr/>
                       <p className="card-text mt-2">4°c/14°c</p>
                       <p className="card-text">Clouds</p>
                       <p className="card-text">20% Rain</p>                
                     </Col> 
                   </Row>
-                </Link> 
-              </Card>            
+              </Card>
+            </Link>           
           </Col>
 
           <Col sm="6" md="4">  
