@@ -1,35 +1,46 @@
-import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Input } from 'reactstrap';
+import React, { useState, useContext } from 'react';
+// import { Link, useHistory } from 'react-router-dom';
+import { GlobalContext } from '../../context/GlobalState';
+import { v4 as uuid } from 'uuid';
+import { 
+  Button, 
+  FormGroup, 
+  Input,
+  Form } from 'reactstrap';
 import '././addCard.css';
 
 export const AddCard = (props) => {
 
-  const {
-    buttonLabel = '+ Add a location',
-    className
-  } = props;
+  // const [card, setCard] = useState('');
+  const { addCard } = useContext(GlobalContext);
 
-  const [modal, setModal] = useState(false);
+  // const history = useHistory();
 
-  const toggle = () => setModal(!modal);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newCard = {
+      id: uuid(),
+      city: "London",   
+      tempMin: "5°C / 9°C",
+      description: "Clouds",
+      humidity: "20% Rain"
+    }
+
+    addCard(newCard)
+    // history.push('/');
+  }
 
   return (
     <div>
-      <p className="text-center card-text" onClick={toggle}>{buttonLabel}</p>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader className="card-text" toggle={toggle}>Add a location</ModalHeader>
-          <ModalBody>
-            <Col md={6}>
-              <FormGroup>
-                <Input type="text"/>
-              </FormGroup>
-            </Col>
-          </ModalBody>
-        <ModalFooter>
-          <Button outline color="secondary" onClick={toggle}>Cancel</Button>{' '}
-          <Button color="secondary" onClick={toggle}>OK</Button>
-        </ModalFooter>
-      </Modal>
+      
+      <Form onSubmit={onSubmit}>                      
+        <FormGroup>
+          <Input 
+            type="text"
+          />
+        </FormGroup>
+        <Button type='submit' color="secondary">OK</Button>      
+      </Form>
     </div>
   )
 }

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AddCard } from '../addCard/AddCard';
+import { GlobalContext } from '../../context/GlobalState'
 import { 
   Card, 
   Row, 
@@ -28,38 +29,50 @@ export const Cards = () => {
     return `${day}`;
   }
 
+  const { cards } = useContext(GlobalContext);
+
+  console.log(cards);
+
+
   return (
     <Container>
       <section className="cards-list">        
-        <Row>     
-          <Col sm="6" md="4">
-            <Link to={"/detail"} className="card-link">        
-              <Card body>        
-                  <CardTitle className="text-center card-text">London</CardTitle>
-                  <Row>
-                    <Col className="text-center">              
-                      <img className="mt-4 " src={ Logo } alt=""/>
-                    </Col>
-                    <Col>                
-                      <p className="card-text text-day">{ dayBuilder(new Date())} 
-                        <small> 10/10/2020</small>
-                      </p>
-                      <hr/>
-                      <p className="card-text mt-2">4°c/14°c</p>
-                      <p className="card-text">Clouds</p>
-                      <p className="card-text">20% Rain</p>                
-                    </Col> 
-                  </Row>
-              </Card>
-            </Link>           
-          </Col>
-
+        <Row>
+        {cards.length > 0 ? (
+          <Fragment>
+          {cards.map(card => (              
+            <Col sm="6" md="4" key={card.id}>
+              <Link to={"/detail"} className="card-link">        
+                <Card body>        
+                    <CardTitle className="text-center card-text">{card.city}</CardTitle>
+                    <Row>
+                      <Col className="text-center">              
+                        <img className="mt-4 " src={ Logo } alt=""/>
+                      </Col>
+                      <Col>                
+                        <p className="card-text text-day">{ dayBuilder(new Date())} 
+                          <small> 10/10/2020</small>
+                        </p>
+                        <hr/>
+                        <p className="card-text mt-2">{card.tempMin}</p>
+                        <p className="card-text">{card.description}</p>
+                        <p className="card-text">{card.humidity}</p>                
+                      </Col> 
+                    </Row>
+                </Card>
+              </Link>           
+            </Col>          
+          ))}
+          </Fragment>
+          ) : (
+            <h4 className="lead">No Cards, try adding a new card.</h4>
+          )}        
           <Col sm="6" md="4">  
             <Card body>            
               <AddCard />
             </Card>
-          </Col>
-        </Row>        
+          </Col> 
+        </Row>             
       </section>
       
   

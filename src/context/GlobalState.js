@@ -1,27 +1,9 @@
 import React, { createContext, useReducer } from 'react';
+import AppReducer from './AppReducer';
 
 // INITIAL STATE
 const initialState = {
-  cards: [
-    {
-      city: "London",   
-      tempMin: "5°C / 9°C",
-      description: "Clouds",
-      humidity: "20% Rain"
-    },
-    {
-      city: "Berlin",   
-      tempMin: "10°C / 14°C",
-      description: "Sunny",
-      humidity: "10% Rain"
-    },
-    {
-      city: "Madrid",   
-      tempMin: "14°C / 18°C",
-      description: "Sunny",
-      humidity: "9% Rain"
-    },
-  ],
+  cards: [],
 }
 
 // CREATE CONTEXT
@@ -29,14 +11,24 @@ export const GlobalContext = createContext(initialState);
 
 // PROVIDER COMPONENT
 export const GlobalProvider = ({children}) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState)
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  // ACTIONS
+  const addCard = (card) => {
+
+    dispatch({
+      type: 'ADD_CARD',
+      payload: card
+    })    
+  }
 
   return (
     <GlobalContext.Provider value={{
-      cards: state.cards
+      cards: state.cards,
+      addCard
     }}>
+
     {children}
     </GlobalContext.Provider>
   )
 }
-
