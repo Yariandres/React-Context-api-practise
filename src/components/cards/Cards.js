@@ -40,29 +40,33 @@ export const Cards = () => {
         <Row>
         {cards.length > 0 ? (
           <Fragment>
-          {cards.map(card => (              
-            <Col sm="6" md="4" key={card.id}>
-              <Link to={"/detail"} className="card-link">        
-                <Card body>        
-                    <CardTitle className="text-center card-text">{card.city}</CardTitle>
-                    <Row>
-                      <Col className="text-center">              
-                        <img className="mt-4 " src={ Logo } alt=""/>
-                      </Col>
-                      <Col>                
-                        <p className="card-text text-day">{ dayBuilder(new Date())} 
-                          <small> 10/10/2020</small>
-                        </p>
-                        <hr/>
-                        <p className="card-text mt-2">{card.tempMin}</p>
-                        <p className="card-text">{card.description}</p>
-                        <p className="card-text">{card.humidity}</p>                
-                      </Col> 
-                    </Row>
-                </Card>
-              </Link>           
-            </Col>          
-          ))}
+            {cards.map(card => (              
+              <Col sm="4" md="4" key={card.id}>
+                <Link to={"/detail"} className="card-link">        
+                  <Card body>
+
+                      <CardTitle className="text-center card-text"><strong>{card.city}</strong></CardTitle>
+
+                      <Row>
+                        <Col sm="4"  className="text-center">              
+                          <img src={ Logo } alt=""/>
+                        </Col>
+
+                        <Col sm="8">                
+                          <p className="card-text text-day">{ dayBuilder(new Date())} 
+                            <small> 10/10/2020</small>
+                          </p>
+                          <hr/>
+                          <p className="card-text mt-2">{card.tempMin}</p>
+                          <p className="card-text">{card.description}</p>
+                          <p className="card-text">{card.humidity}</p>                
+                        </Col> 
+
+                      </Row>
+                  </Card>
+                </Link>           
+              </Col>          
+            ))}
           </Fragment>
           ) : (
             <h4 className="lead">No Cards, try adding a new card.</h4>

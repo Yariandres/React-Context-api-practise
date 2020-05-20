@@ -11,7 +11,7 @@ import Cloudy from '../../images/images/Bewölkt.png';
 import '././details.css';
 
 export const Detail = () => {
-
+  
   const history = useHistory()
 
   const navigateToHome = () => {
