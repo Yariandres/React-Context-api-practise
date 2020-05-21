@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 
 import "./cards.css";
+
 import Logo from '../../images/images/Gewitter.png';
 
 export const Cards = () => {
@@ -31,9 +32,6 @@ export const Cards = () => {
 
   const { cards } = useContext(GlobalContext);
 
-  console.log(cards);
-
-
   return (
     <Container>
       <section className="cards-list">        
@@ -42,27 +40,31 @@ export const Cards = () => {
           <Fragment>
             {cards.map(card => (              
               <Col sm="4" md="4" key={card.id}>
-                <Link to={"/detail"} className="card-link">        
+                <Link to={"/detail/" + card.id} className="card-link">        
                   <Card body>
+                    <CardTitle className="text-center card-text"><strong>{card.city}</strong></CardTitle>
 
-                      <CardTitle className="text-center card-text"><strong>{card.city}</strong></CardTitle>
+                    <Row>
+                      <Col sm="4"  className="text-center">              
+                        <img src={ Logo } alt=""/>
+                      </Col>
 
-                      <Row>
-                        <Col sm="4"  className="text-center">              
-                          <img src={ Logo } alt=""/>
-                        </Col>
-
-                        <Col sm="8">                
-                          <p className="card-text text-day">{ dayBuilder(new Date())} 
-                            <small> 10/10/2020</small>
-                          </p>
-                          <hr/>
-                          <p className="card-text mt-2">{card.tempMin}</p>
-                          <p className="card-text">{card.description}</p>
-                          <p className="card-text">{card.humidity}</p>                
-                        </Col> 
-
-                      </Row>
+                      <Col sm="8">                
+                        <p className="card-text text-day">{ dayBuilder(new Date())} 
+                          <small> 10/10/2020</small>
+                        </p>
+                        <hr/>
+                        <p className="card-text mt-2">
+                          {card.temp_min}
+                            <span>°C / </span> 
+                          {card.temp_max}
+                            <span>°C</span>
+                        </p>
+                        
+                        <p className="card-text">{card.description}</p>
+                        <p className="card-text">{card.humidity}% Rain</p>                
+                      </Col>
+                    </Row>
                   </Card>
                 </Link>           
               </Col>          

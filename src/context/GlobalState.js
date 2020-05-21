@@ -3,7 +3,7 @@ import AppReducer from './AppReducer';
 
 // INITIAL STATE
 const initialState = {
-  cards: [],
+  cards: []
 }
 
 // CREATE CONTEXT
@@ -15,7 +15,6 @@ export const GlobalProvider = ({children}) => {
 
   // ACTIONS
   const addCard = (card) => {
-
     dispatch({
       type: 'ADD_CARD',
       payload: card

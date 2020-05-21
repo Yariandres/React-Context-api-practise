@@ -14,13 +14,10 @@ const App = () => (
         <Nav />
         <Switch>        
           <Route exact path={"/"} component={ Home }/>
-          <Route exact path={"/detail"} component={ Detail }/>
+          <Route exact path={"/detail/:id"} component={ Detail }/>
         </Switch>
       </Router>        
     </div>
   </GlobalProvider>
 );
-
 export default App;
-
-// <Route exact path={"detail/:id"} component={ Detail }/>
