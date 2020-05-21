@@ -32,7 +32,7 @@ export const AddCard = () => {
 
     const wheatherData = await fetchWeatherData();
 
-    console.log(wheatherData);
+    // console.log(wheatherData);
 
     addCard({
       id: wheatherData.id,
@@ -59,10 +59,3 @@ export const AddCard = () => {
     </div>
   )
 }
-
-// {( typeof weather.city.name != "undefined" ) ? ( console.log(weather.city.name) ) : ('')}
-
-// const API = {
-//   key: 'b73b624979a3ffaa51d0475f04bccd85',
-//   base: 'https://api.openweathermap.org/data/2.5/'
-// }
