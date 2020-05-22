@@ -29,9 +29,16 @@ const City = props => {
     <Fragment>
       {props.city.map(card => (              
         <Col sm="4" md="4" key={card.id}>
-          <Link to={"/detail/" + card.id} className="card-link">        
+
+          <Link className="card-link" to={{ 
+            pathname: `/details/${card.id}`,
+            state: { city: card.city }
+          }}>
+
             <Card body>
-              <CardTitle className="text-center card-text"><strong>{card.city}</strong></CardTitle>
+              <CardTitle className="text-center card-text">
+                <strong>{card.city}</strong>
+              </CardTitle>
       
               <Row>
                 <Col sm="4"  className="text-center">              
@@ -54,7 +61,7 @@ const City = props => {
                   <p className="card-text">{card.humidity}% Rain</p>                
                 </Col>                
               </Row>
-              
+
             </Card>
           </Link>           
         </Col>          

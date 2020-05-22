@@ -1,3 +1,17 @@
 {
-  "svg.preview.background": "black"
+  "svg.preview.background": "black",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "jsx"
+  ],
+  "emmet.excludeLanguages": ["markdown"],
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }

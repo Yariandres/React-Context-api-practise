@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from './components/home/Home';
-import { Detail } from './components/details/Detail';
+import { Details } from './components/details/Details';
 import { Nav } from './components/navigation/Nav';
 import { GlobalProvider } from './context/GlobalState';
 
@@ -14,7 +14,7 @@ const App = () => (
         <Nav />
         <Switch>        
           <Route exact path={"/"} component={ Home }/>
-          <Route exact path={"/detail/:id"} component={ Detail }/>
+          <Route exact path={"/details/:id"} component={ Details }/>
         </Switch>
       </Router>        
     </div>

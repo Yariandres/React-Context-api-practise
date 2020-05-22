@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-// import { Link, useHistory } from 'react-router-dom';
 import { GlobalContext } from '../../context/GlobalState';
 import { 
   Button, 
   FormGroup, 
   Input,
   Form } from 'reactstrap';
+
 import '././addCard.css';
 
 const API = {
@@ -20,28 +20,33 @@ export const AddCard = () => {
   const [query, setQuery] = useState('');
 
   const fetchWeatherData = async () => {
+    
     const response = await fetch(`${API.base}weather?q=${query}&units=metric&appid=${API.key}`)
 
     const res = await response.json();
 
     return res;
-  }  
+  }
 
+  
   const onSubmit = async (e) => {
+
     e.preventDefault();
 
-    const wheatherData = await fetchWeatherData();
+    const weatherData = await fetchWeatherData();
 
     // console.log(wheatherData);
 
     addCard({
-      id: wheatherData.id,
-      city: wheatherData.name,
-      temp_min: wheatherData.main.temp_min,
-      temp_max: wheatherData.main.temp_max,
-      description: wheatherData.weather[0].description,
-      humidity: wheatherData.main.humidity
-    });          
+      id: weatherData.id,
+      city: weatherData.name,
+      temp_min: weatherData.main.temp_min,
+      temp_max: weatherData.main.temp_max,
+      description: weatherData.weather[0].description,
+      humidity: weatherData.main.humidity
+    });
+
+    setQuery('');
   }
 
   return (

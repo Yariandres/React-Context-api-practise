@@ -24,3 +24,7 @@
 .small-cards:hover {
   border: solid 1px #eaeded;
 }
+
+.card-link {
+  text-decoration: none;
+}
