@@ -11,16 +11,11 @@ export const GlobalContext = createContext(initialState);
 
 // PROVIDER COMPONENT
 export const GlobalProvider = ({children}) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState, () => {
-
-    const localData = localStorage.getItem('cards');
-    
-    return localData ? JSON.parse(localData) : [];
-  });
+  const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // LOCALSTORAGE
   useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(state))
+    localStorage.setItem('cards', JSON.stringify(state));
   }, [state]);
 
   // ACTIONS
@@ -41,3 +36,8 @@ export const GlobalProvider = ({children}) => {
     </GlobalContext.Provider>
   )
 }
+
+// () => {
+//   const localData = localStorage.getItem('cards');
+//   return localData ? JSON.parse(localData) : [];
+// }

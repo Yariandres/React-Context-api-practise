@@ -4,7 +4,8 @@ import {
   Container, 
   Button, 
   Row,
-  Col
+  Col,
+  Spinner
 } from 'reactstrap';
 
 import Cloudy from '../../images/images/Bewölkt.png';
@@ -15,8 +16,6 @@ const API = {
   key: '70c2438cc937f7ccb72dc8d174bfe7bb',
   base: 'https://api.openweathermap.org/data/2.5/'
 }
-
-// https://api.openweathermap.org/data/2.5/forecast?q=London&appid=b73b624979a3ffaa51d0475f04bccd85
 
 const dayBuilder = d => {
   let days = [
@@ -35,7 +34,8 @@ const dayBuilder = d => {
 export class Details extends Component {
 
   state = {
-    activeCity: []
+    activeCity: [],
+    loading: false
   }
 
   componentDidMount = async () => {
@@ -46,10 +46,11 @@ export class Details extends Component {
 
     const resp = await req.json();
 
-    this.setState({ activeCity: resp });
+    this.setState({ 
+      activeCity: resp,
+      loading: true
+    });
   } 
-
-  
 
   render() {
 
@@ -62,7 +63,7 @@ export class Details extends Component {
     return (
       <section className="card-main">
         <Container>
-          {this.state.activeCity.length !== 0 && 
+          {this.state.loading ?
             <div className="card-details">
               <div className="section-top pt-5 ml-5">
                 <Row>
@@ -100,7 +101,9 @@ export class Details extends Component {
                 </Row>
               </div>            
             </div>
-          }
+
+
+          : <Spinner color="secondary" /> }
 
           <Button className="btn btn-default mb-4">
             <Link className="card-link" to="/"> &#60; Dashboard</Link>           
@@ -113,13 +116,6 @@ export class Details extends Component {
   }
 }
 
-// const history = useHistory()
-
-//     const navigateToHome = () => {
-//       history.push("/");
-// }
-
-// onClick={navigateToHome}
 
 
 
