@@ -59,8 +59,6 @@ export class Details extends Component {
       return (temp - 273.15).toFixed(0);
     }
 
-    console.log(weather);  
-
     return (
       <section className="card-main">
         <Container>
@@ -70,7 +68,7 @@ export class Details extends Component {
                 <Row>
                   <Col xs="6">
                     <h2 className="details-text">{weather.city.name} - <small>{weather.city.country}</small></h2>
-                    <p className="details-text">{ dayBuilder(new Date())} {weather.list[0].dt_txt}</p>
+                    <p className="details-text">{ dayBuilder(new Date())} {(weather.list[0].dt_txt).substring(10, 16)}</p>
                     <p className="details-text">{weather.list[0].weather[0].main}</p>
 
                     <div className="temp d-flex my-5">
@@ -80,30 +78,32 @@ export class Details extends Component {
                   </Col>
 
                   <Col xs="6">
-                    <p className="details-text">Precipitation 0%</p>
-                    <p className="details-text">Humidity: 23 60%</p>
-                    <p className="details-text">Wind: 8 km/h</p>
+                    <p className="details-text">Precipitation {weather.list[0].main.humidity}%</p>
+                    <p className="details-text">Humidity: {weather.list[0].main.humidity}%</p>
+                    <p className="details-text">Wind: {(weather.list[0].wind.speed).toFixed(0)} km/h</p>
                   </Col>
                 </Row>
               </div>
 
               <div className="section-bottom ml-5 pb-5 mb-4">
                 <Row>
-                  <Col xs="1">
-                    <div className="small-cards text-center">        
-                      <p className="details-text">9:00</p>
-                      <img src={ Cloudy } alt="Cloudy" className="small-card-icon mr-4"/>
-                      <p className="details-text">9°C</p>
-                      <p className="details-text">60%</p>
-                    </div>  
-                  </Col>
+                  {weather.list.slice(0, 9).map((dayForecast, index) => (
+                    <Col xs="1" key={index}>
+                      <div className="small-cards text-center">        
+                        <p className="details-text">{(dayForecast.dt_txt).substring(10, 16)}</p>
+                        <img src={ Cloudy } alt="Cloudy" className="small-card-icon mr-4"/>
+                        <p className="details-text">{convertToCelsius(dayForecast.main.temp)}°C</p>
+                        <p className="details-text">Rain 60%</p>
+                      </div> 
+                    </Col>
+                  ))}            
                 </Row>
               </div>            
             </div>
           }
 
           <Button className="btn btn-default mb-4">
-            <Link to="/"> &#60; Dashboard</Link>           
+            <Link className="card-link" to="/"> &#60; Dashboard</Link>           
           </Button>
           
         </Container>

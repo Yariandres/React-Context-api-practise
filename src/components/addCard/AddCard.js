@@ -1,10 +1,14 @@
+/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { 
   Button, 
   FormGroup, 
   Input,
-  Form } from 'reactstrap';
+  Form,
+  Modal, 
+  ModalHeader, 
+  ModalBody } from 'reactstrap';
 
 import '././addCard.css';
 
@@ -13,7 +17,7 @@ const API = {
   base: 'https://api.openweathermap.org/data/2.5/'
 }
 
-export const AddCard = () => {  
+export const AddCard = props => {  
 
   const { addCard } = useContext(GlobalContext);
 
@@ -35,8 +39,6 @@ export const AddCard = () => {
 
     const weatherData = await fetchWeatherData();
 
-    // console.log(wheatherData);
-
     addCard({
       id: weatherData.id,
       city: weatherData.name,
@@ -47,20 +49,44 @@ export const AddCard = () => {
     });
 
     setQuery('');
+    setModal(!modal);
   }
+
+  // MODAL
+  const {
+    className
+  } = props;
+
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
 
   return (
     <div>
-      <Form onSubmit={onSubmit}>                      
-        <FormGroup>
-          <Input 
-            type="text"
-            onChange={e => setQuery(e.target.value)}
-            value={query}
-          />
-        </FormGroup>        
-        <Button type='submit' color="secondary">OK</Button>            
-      </Form>    
+      <p className="text-center popup-text" onClick={toggle}>+ Add a city</p>
+      <Modal isOpen={modal} toggle={toggle} className={className}>
+
+        <ModalHeader toggle={toggle}>Add a city</ModalHeader>
+          <ModalBody>
+
+            <Form onSubmit={onSubmit}>
+
+              <FormGroup>
+                <Input 
+                  type="text"
+                  onChange={e => setQuery(e.target.value)}
+                  value={query}
+                  required
+                />
+              </FormGroup>
+              
+            <Button color="primary" onClick={toggle}>Cancel</Button>{' '}       
+            <Button type='submit' color="secondary">OK</Button>
+
+          </Form>
+
+        </ModalBody>
+      </Modal>   
     </div>
   )
 }
