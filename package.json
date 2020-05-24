@@ -2,12 +2,12 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
+    "start": "node server",
     "client": "cd client && npm start",
-    "server": "nodemon index --ignore client/",
+    "server": "nodemon server --ignore client/",
     "client-install": "cd client && npm install",
     "server-install": "npm install",
     "install-all": "concurrently \"npm run client-install\" \"server-install\" ",
@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.1",
     "express": "^4.17.1",
     "mongoose": "^5.9.15"
   }

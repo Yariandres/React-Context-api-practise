@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://Admin:thisPassword@weathercluss-ph8xt.mongodb.net/test?retryWrites=true&w=majority"
+}
