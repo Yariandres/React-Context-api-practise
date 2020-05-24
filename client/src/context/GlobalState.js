@@ -11,8 +11,9 @@ export const GlobalContext = createContext(initialState);
 
 // PROVIDER COMPONENT
 export const GlobalProvider = ({children}) => {
+  
   const [state, dispatch] = useReducer(AppReducer, initialState, () => {
-    
+
     const localData = localStorage.getItem('cards');
     return localData ? JSON.parse(localData) : [];
   });

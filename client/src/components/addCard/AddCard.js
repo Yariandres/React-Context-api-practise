@@ -63,9 +63,8 @@ export const AddCard = props => {
 
   return (
     <div>
-      <p className="text-center popup-text" onClick={toggle}>+ Add a city</p>
+      <p className="text-center popup-text lead" onClick={toggle}><span className="mr-4">+</span>  Add a city</p>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-
         <ModalHeader toggle={toggle}>Add a city</ModalHeader>
           <ModalBody>
 

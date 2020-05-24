@@ -29,7 +29,7 @@ export const Cards = () => {
           )}     
 
           <Col sm="6" md="4">  
-            <Card body>            
+            <Card body className="h-100 d-flex">            
               <AddCard />
             </Card>
           </Col> 
