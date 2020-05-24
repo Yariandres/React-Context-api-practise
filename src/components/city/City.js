@@ -34,12 +34,11 @@ const City = props => {
             pathname: `/details/${card.id}`,
             state: { city: card.city }
           }}>
-
+          
             <Card body>
               <CardTitle className="text-center card-text">
                 <strong>{card.city}</strong>
-              </CardTitle>
-      
+              </CardTitle>      
               <Row>
                 <Col sm="4"  className="text-center">              
                   <img src={ Logo } alt=""/>

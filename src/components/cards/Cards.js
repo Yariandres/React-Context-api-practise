@@ -20,13 +20,14 @@ export const Cards = () => {
     <Container>
       <section className="cards-list">        
         <Row>
-        {cards.length > 0 ? (
-          <Fragment>
-            <City city={cards}/>            
-          </Fragment>
-          ) : (
+          { cards.length ? (
+            <Fragment>
+              <City city={cards}/>            
+            </Fragment>
+            ) : (
             <h4 className="lead">No Cards, try adding a new card.</h4>
-          )}        
+          )}     
+
           <Col sm="6" md="4">  
             <Card body>            
               <AddCard />
